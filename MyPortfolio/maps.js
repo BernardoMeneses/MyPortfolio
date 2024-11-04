@@ -1,5 +1,5 @@
 // Configurações do Mapbox
-mapboxgl.accessToken = 'pk.eyJ1IjoicmFpbnpwdCIsImEiOiJjbTJ4a29zNjcwNXlwMnFzZHk3cnRrN2RhIn0.-Vz-cycrxMs07AIf02TdRQ';
+mapboxgl.accessToken = 'CHAVE DA API MAPBOX';
 
 function initMapboxMap() {
     const location = [ -8.2759558, 41.2074705];
