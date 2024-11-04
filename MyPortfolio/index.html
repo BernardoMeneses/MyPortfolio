@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bernardo Meneses</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- CSS and JS for Mapbox -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+</head>
+<body>
+    <div class="desktop">    
+       <!-- Janelas dos "aplicativos" -->
+        <div id="sobreMim" class="app-window">
+            <div class="window-header">
+                <span>Inicio</span>
+                <div class="window-buttons">
+                    <button onclick="minimizeApp('sobreMim')">-</button>
+                    <button onclick="closeApp('sobreMim')">X</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="settings-container">
+                    <div class="sidebar">
+                        <ul>
+                            <li class="texto-items" onclick="showSettings('home')">Projetos</li>
+                            <li class="texto-items" onclick="showSettings('aboutme')">Sobre Mim</li>
+                            <li class="texto-items" onclick="showSettings('curriculo')">Currículo</li>
+                            <li class="texto-items"onclick="showSettings('contactos')">Contactos</li>
+                            <li class="texto-items" onclick="showSettings('jogos')">Downloads</li>
+                        </ul>
+                    </div>
+                    <div class="settings-content" id="settingsContent">
+                        <p class = "texto-boas-vindas">Bem vindo ao meu portfólio!! Espero que apreciem o meu trabalho!!, abaixo
+                            estão alguns projetos desenvolvidos ao longo da minha carreira!!
+                        </p>
+                        <div class="games-grid">
+                            <div class="game-item">
+                                <a  href="https://discord.gg/FFcnYcm9jE" target="_blank" title="AllSoft">
+                                    <img src="./Imagens/icons/allsoft.png"  style="width: 100px; height: 100px">
+                                    <p class="texto-items">AllSoft Discord</p>
+                                </a>
+                            </div>
+                            <div class="game-item">
+                                <a  href="https://discord.com/oauth2/
+                                authorize?client_id=1293274183333056533&permissions=0&integration_type=
+                                0&scope=bot+applications.commands" target="_blank" 
+                                title="AllSoft">
+                                    <img src="./Imagens/icons/softia.jpg"  style="width: 100px; height: 100px">
+                                    <p class="texto-items">Softia Bot</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="localizacao" class="app-window">
+            <div class="window-header">
+                <span>Localização</span>
+                <div class="window-buttons">
+                    <button onclick="minimizeApp('localizacao')">-</button>
+                    <button onclick="closeApp('localizacao')" >X</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <div id="map" style="width: 100%; height: 300px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notas" class="app-window">
+        <div class="window-header">
+            <span>Notas</span>
+            <div class="window-buttons">
+                <button onclick="saveNote('notas')">G</button>
+                <button onclick="minimizeApp('notas')">X</button>
+                
+            </div>
+        </div>
+        <div class="notas">
+            <textarea  id="noteContent" style="background-color:rgb(44, 46, 46); width: 100%; color: beige; height: 100%; font-size: 16px; box-sizing: border-box; font-family:'Times New Roman', Times, serif;"></textarea>
+        </div>
+    </div>
+    
+    <div class="taskbar">
+        <div class="icon" onclick="openApp('sobreMim')">
+            <img src="./Imagens/icons/question.png" alt="Sobre Mim">
+        </div>
+        <div class="icon" onclick="openApp('localizacao')">
+            <img src="./Imagens/icons/location.png" alt="Localização">
+        </div>
+        <div class="icon" onclick="openApp('notas')">
+            <img src="./Imagens/icons/note.png" alt="Notas">
+        </div>
+    </div>
+
+    <!-- Modularized JavaScript Files -->
+    <script src="maps.js"></script>
+    <script src="drag.js"></script>
+    <script src="resize.js"></script>
+    <script src="main.js"></script>
+    <script>
+        function showSettings(option) {
+            const settingsContent = document.getElementById('settingsContent');
+            switch(option) {
+                case 'aboutme':
+                    settingsContent.innerHTML = '<h3 class ="texto-boas-vindas" style="text-align:center">Quem sou eu?</h3>' + '<div style="display: flex; flex-direction: column; align-items: center;">' +
+                                                '<img src="./Imagens/backgrounds/IMG_20240619_053552.jpg" alt="Minha Foto" style="width: 200px; height: 200px; border-radius: 50%; margin-bottom: 20px;">' +
+                                                '<p class="sobre-mim-texto" style ="text-align:center;">Chamo-me Bernardo Meneses, sou um software developer apaixonado por criar soluções inovadoras e eficientes. Tenho experiência em várias linguagens de programação e sou entusiasta de novas tecnologias.</p>';
+                    break;
+                    break;
+                    case 'curriculo':
+                        settingsContent.innerHTML = `<h3 class="texto-boas-vindas" style="text-align:center">My Curriculum Vitae</h3>
+                                                    <iframe id="pdfViewer" src="./Imagens/curriculo/Bernardo_Meneses_EN.pdf" style="width: 100%; height: 400px; margin-top: 10px;" ></iframe>
+                                                    <button id="downloadBtn" onclick="downloadPDF()" style="margin-top: 10px;">Download PDF</button>`;
+    break;
+
+    case 'home':
+                        settingsContent.innerHTML = `<div class="settings-content" id="settingsContent">
+                        <p class = "texto-boas-vindas">Lista completa dos meus projetos!!</p>
+                        <div class="games-grid">
+                            <div class="game-item">
+                                <a  href="https://discord.gg/FFcnYcm9jE" target="_blank" title="AllSoft">
+                                    <img src="./Imagens/icons/allsoft.png"  style="width: 100px; height: 100px">
+                                    <p class="texto-items">AllSoft Discord</p>
+                                </a>
+                            </div>
+                            <div class="game-item">
+                                <a  href="https://discord.com/oauth2/
+                                authorize?client_id=1293274183333056533&permissions=0&integration_type=
+                                0&scope=bot+applications.commands" target="_blank" 
+                                title="AllSoft">
+                                    <img src="./Imagens/icons/softia.jpg"  style="width: 100px; height: 100px">
+                                    <p class="texto-items">Softia Bot</p>
+                                </a>
+                            </div>
+                            <div class="game-item">
+                                <a  href="">
+                                    <img src="./Imagens/icons/connect-4-rules.jpg" style="width: 100px; height: 100px">
+                                    <p class="texto-items">4Linha(Inativo)</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>`;
+
+        break;
+    case 'contactos':
+    settingsContent.innerHTML = `
+        <h3 class="texto-boas-vindas" style="text-align:center">Contactos</h3>
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+            <a href="https://www.linkedin.com/in/bernardojvmeneses/" target="_blank" title="LinkedIn">
+                <img src="./Imagens/icons/linkdin.png" alt="LinkedIn" style="width: 80px; height: 80px;">
+            </a>
+            <a href="https://www.instagram.com/bernardomeneses_/?next=%2F" target="_blank" title="Instagram">
+                <img src="./Imagens/icons/instagram.png" alt="Instagram" style="width: 80px; height: 80px;">
+            </a>
+            <a href="https://github.com/BernardoMeneses" target="_blank" title="GitHub">
+                <img src="./Imagens/icons/github.png" alt="GitHub" style="width: 80px; height: 80px;">
+            </a>
+        </div>
+        <p class="sobre-mim-texto" style="text-align: center; margin-top: 10px;">@bernardomeneses_</p>
+    `;
+    break;
+
+    case 'jogos':
+    settingsContent.innerHTML = `
+        <h3 class="texto-boas-vindas" style="text-align:center">Downloads</h3>
+        <div class="games-grid">
+            <div class="game-item">
+                <a href="./downloads/Jogo1.torrent" download="DRAGON BALL: SPARKLING ZERO.torrent">
+                    <img src="./Imagens/icons/jogo1.png" alt="Dragon Ball: Sparkling Zero" class="game-icon">
+                </a>
+                <p class="game-name">Dragon Ball: Sparkling Zero</p>
+            </div>
+            <div class="game-item">
+                <a href="./downloads/Jogo2.nsp" download="INAZUMA_ELEVEN_DEMO.nsp">
+                    <img src="./Imagens/icons/w500.jpg" alt="Jogo 2" class="game-icon">
+                </a>
+                <p class="game-name">INAZUMA ELEVEN Victory RoadWorldwide Beta Test Demo</p>
+            </div>
+            <!-- Adicione mais jogos seguindo o mesmo formato -->
+        </div>
+    `;
+    break;
+
+            }
+        }
+    </script>
+    <script>
+        function downloadPDF() {
+            const link = document.createElement('a');
+            link.href = './Imagens/curriculo/Bernardo_Meneses_EN.pdf';
+            link.download = 'Bernardo_Meneses_EN.pdf';
+            link.click();
+        }
+    </script>
+    <div id="current-time" class="current-time"></div>
+</body>
+</html>
+
