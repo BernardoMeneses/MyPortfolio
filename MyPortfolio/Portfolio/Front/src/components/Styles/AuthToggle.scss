@@ -1,0 +1,263 @@
+@use '../../Styles/variables' as *;
+@use '../../Styles/mixins' as *;
+
+.auth-toggle-container {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 2px solid $primary;
+  box-shadow: 0 0 30px rgba($primary, 0.2);
+  max-width: 500px;
+  margin: 2rem auto;
+  
+  .auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    
+    h3 {
+      color: $primary;
+      font-size: 24px;
+      margin-bottom: 0.5rem;
+    }
+    
+    p {
+      color: $secondary-text;
+      font-size: 16px;
+    }
+  }
+}
+
+// Toggle entre providers
+.provider-toggle {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 2rem;
+  
+  .toggle-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    color: $secondary-text;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      color: $primary;
+    }
+    
+    &.active {
+      background: linear-gradient(45deg, $primary, $accent);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba($primary, 0.3);
+    }
+  }
+}
+
+// Card do provider
+.provider-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba($primary, 0.2);
+  
+  .provider-info {
+    margin-bottom: 1.5rem;
+    
+    h4 {
+      color: $accent;
+      font-size: 20px;
+      margin-bottom: 0.5rem;
+    }
+    
+    p {
+      color: $secondary-text;
+      margin-bottom: 1rem;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        color: $secondary-text;
+        font-size: 14px;
+        padding: 5px 0;
+        line-height: 1.4;
+      }
+    }
+  }
+  
+  .login-btn {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    &:not(:disabled):hover {
+      transform: translateY(-2px);
+    }
+    
+    &.github-btn {
+      background: linear-gradient(45deg, #333, #555);
+      color: white;
+      
+      &:hover {
+        box-shadow: 0 5px 15px rgba(51, 51, 51, 0.4);
+      }
+    }
+    
+    &.google-btn {
+      background: linear-gradient(45deg, #4285f4, #34a853);
+      color: white;
+      
+      &:hover {
+        box-shadow: 0 5px 15px rgba(66, 133, 244, 0.4);
+      }
+    }
+  }
+}
+
+// Card do usuário autenticado
+.auth-user-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba($primary, 0.3);
+  
+  .user-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    
+    .user-avatar {
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 3px solid $primary;
+      }
+      
+      .avatar-placeholder {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, $primary, $accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 24px;
+      }
+    }
+    
+    .user-info {
+      flex: 1;
+      
+      h4 {
+        margin: 0 0 5px 0;
+        color: $primary;
+        font-size: 18px;
+      }
+      
+      p {
+        margin: 0 0 10px 0;
+        color: $secondary-text;
+        font-size: 14px;
+      }
+      
+      .provider-badge {
+        display: inline-block;
+        background: rgba($accent, 0.2);
+        color: $accent;
+        padding: 4px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: 500;
+        border: 1px solid rgba($accent, 0.3);
+      }
+    }
+  }
+  
+  .user-actions {
+    text-align: center;
+    
+    .logout-btn {
+      background: linear-gradient(45deg, #ff4444, #cc0000);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 68, 68, 0.4);
+      }
+    }
+  }
+}
+
+// Footer
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+  p {
+    color: $secondary-text;
+    font-size: 12px;
+    opacity: 0.7;
+    margin: 0;
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .auth-toggle-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .provider-card {
+    padding: 1.5rem;
+  }
+  
+  .auth-header h3 {
+    font-size: 20px;
+  }
+  
+  .user-header {
+    flex-direction: column;
+    text-align: center;
+    
+    .user-info {
+      text-align: center;
+    }
+  }
+}

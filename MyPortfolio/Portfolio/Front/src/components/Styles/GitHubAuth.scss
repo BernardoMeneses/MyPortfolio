@@ -1,0 +1,177 @@
+@use '../../Styles/variables' as *;
+@use '../../Styles/mixins' as *;
+
+.github-auth {
+  background: rgba($primary-color, 0.1);
+  border: 1px solid $accent-color;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+
+  h3 {
+    color: $accent-color;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  p {
+    color: $text-secondary;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .github-login-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #333, #444);
+    color: white;
+    border: 2px solid $accent-color;
+    border-radius: 8px;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-bottom: 1rem;
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, #444, #555);
+      box-shadow: 0 0 20px rgba($accent-color, 0.3);
+      transform: translateY(-2px);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .github-icon {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid transparent;
+      border-top: 2px solid currentColor;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  .auth-form {
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+
+      input {
+        flex: 1;
+        padding: 0.75rem;
+        background: rgba($background-color, 0.8);
+        border: 1px solid rgba($accent-color, 0.3);
+        border-radius: 8px;
+        color: $text-primary;
+        font-size: 0.9rem;
+
+        &:focus {
+          outline: none;
+          border-color: $accent-color;
+          box-shadow: 0 0 0 2px rgba($accent-color, 0.2);
+        }
+
+        &::placeholder {
+          color: $text-secondary;
+        }
+      }
+
+      button {
+        padding: 0.75rem 1.5rem;
+        background: $accent-color;
+        color: $background-color;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover:not(:disabled) {
+          background: lighten($accent-color, 10%);
+          transform: translateY(-2px);
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  .help-text {
+    background: rgba($background-color, 0.5);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid $accent-color;
+
+    p {
+      margin: 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    strong {
+      color: $accent-color;
+    }
+  }
+
+  &.logged-in {
+    background: rgba($success-color, 0.1);
+    border-color: $success-color;
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .user-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid $success-color;
+      }
+
+      .user-name {
+        color: $success-color;
+        font-weight: 600;
+        flex: 1;
+      }
+
+      .logout-btn {
+        padding: 0.5rem 1rem;
+        background: transparent;
+        color: $error-color;
+        border: 1px solid $error-color;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: $error-color;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
