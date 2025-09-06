@@ -15,7 +15,7 @@ Portfolio pessoal com sistema de recomendações via GitHub e formulário de con
 
 ## Configurar Ambiente Virtual
 
-- C:/Users/gamer/Desktop/Projetos/dev/Portfolio/Back/venv/Scripts/Activate.ps1
+- C:/Users/gamer/Desktop/Projetos/dev/Portfolio//venv/Scripts/Activate.ps1
 
 O sistema agora usa **SQLite** para persistir dados permanentemente.
 
