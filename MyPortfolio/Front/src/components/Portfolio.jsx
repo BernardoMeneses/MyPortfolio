@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Styles/Portfolio.scss'
+import './Styles/ProjectCard.scss'
+import ProjectCard from './ProjectCard'
 
 const Portfolio = () => {
   const [projects, setProjects] = useState([])
@@ -28,7 +30,7 @@ const Portfolio = () => {
     return (
       <section id="portfolio" className="portfolio section">
         <div className="container">
-          <h2 className="section-title">Portfolio</h2>
+          <h2 className="section-title">Projects</h2>
           <div className="loading">Carregando projetos...</div>
         </div>
       </section>
@@ -39,7 +41,7 @@ const Portfolio = () => {
     return (
       <section id="portfolio" className="portfolio section">
         <div className="container">
-          <h2 className="section-title">Portfolio</h2>
+          <h2 className="section-title">Projects</h2>
           <div className="error">Erro ao carregar projetos: {error}</div>
         </div>
       </section>
@@ -49,39 +51,19 @@ const Portfolio = () => {
   return (
     <section id="portfolio" className="portfolio section">
       <div className="container">
-        <h2 className="section-title">Portfolio</h2>
+        <h2 className="section-title">Projects</h2>
         
-        <div className="portfolio-grid">
+        <div className="ProjectsGrid">
           {projects.map((project, index) => (
-            <div key={index} className="project-card">
-              <div className="project-image">
-                <img src={project.image} alt={project.title} />
-                <div className="project-overlay">
-                  <a 
-                    href={project.repo} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="project-link"
-                  >
-                    <i className="fab fa-github"></i>
-                    Ver Código
-                  </a>
-                </div>
-              </div>
-              
-              <div className="project-content">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-                
-                <div className="project-tech">
-                  {project.tech.map((tech, techIndex) => (
-                    <span key={techIndex} className="tech-tag">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <ProjectCard
+              key={index}
+              title={project.title}
+              description={project.description}
+              repoLink={project.repo}
+              projectLink={project.link}
+              image={project.image}
+              tech={project.tech}
+            />
           ))}
         </div>
       </div>

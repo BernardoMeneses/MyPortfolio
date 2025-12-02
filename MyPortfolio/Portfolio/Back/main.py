@@ -112,10 +112,21 @@ def get_projects_from_db():
     
     projects = []
     for row in cursor.fetchall():
+        tech_value = row["tech"]
+        # Se tech é uma string simples (separada por vírgulas), converter para array
+        if isinstance(tech_value, str):
+            try:
+                tech_list = json.loads(tech_value)
+            except (json.JSONDecodeError, ValueError):
+                # Se não for JSON válido, tratar como string separada por vírgulas
+                tech_list = [t.strip() for t in tech_value.split(',')]
+        else:
+            tech_list = tech_value
+            
         projects.append({
             "title": row["title"],
             "description": row["description"],
-            "tech": json.loads(row["tech"]),
+            "tech": tech_list,
             "repo": row["repo"],
             "image": row["image"]
         })
@@ -392,10 +403,6 @@ async def google_callback(code: str, state: str):
     except Exception as e:
         error_url = f"http://localhost:5173/google/callback.html?error=server_error&message={str(e)}"
         return RedirectResponse(url=error_url)
-
-@app.get("/api/projects", response_model=List[Project])
-def read_root():
-    return {"message": "Portfolio API está funcionando! 🚀 Base de dados SQLite ativa."}
 
 @app.get("/api/projects", response_model=List[Project])
 def get_projects():
