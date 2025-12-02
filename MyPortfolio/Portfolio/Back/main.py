@@ -145,6 +145,7 @@ def save_contact_message(name: str, email: str, message: str, sent_by_email: boo
     ''', (name, email, message, sent_by_email))
     
     conn.commit()
+    
     message_id = cursor.lastrowid
     conn.close()
     
